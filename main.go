@@ -5,17 +5,23 @@ import (
 	"os"
 	"sync"
 
+	"github.com/cesardelgadom/go-patterns/adapter"
 	"github.com/cesardelgadom/go-patterns/builder"
 	"github.com/cesardelgadom/go-patterns/factory"
+	"github.com/cesardelgadom/go-patterns/prototype"
+	"github.com/cesardelgadom/go-patterns/proxy/client"
 	"github.com/cesardelgadom/go-patterns/singleton"
 	"github.com/cesardelgadom/go-patterns/singleton/client_one"
 	"github.com/cesardelgadom/go-patterns/singleton/client_two"
 )
 
 func main() {
-	testSingleton()
-	testFactory()
-	testBuilder()
+	//testSingleton()
+	//testFactory()
+	//testBuilder()
+	//testPrototype()
+	//testProxy()
+	testAdapter()
 }
 
 func testSingleton() {
@@ -87,4 +93,38 @@ func messageFactory(op int8) builder.MessageBuilder {
 	default:
 		return nil
 	}
+}
+
+func testPrototype() {
+	color := "Azul"
+	phones := map[string]string{"home": "123456", "work": "0987553"}
+	p1 := prototype.Prototype{
+		Name:    "Cesar",
+		Age:     25,
+		Friends: []string{"Paola", "Juan Diego", "Jose"},
+		Color:   &color,
+		Phones:  phones,
+	}
+	//copia del objeto original
+	p2 := p1.Clone()
+	p2.Age = 40
+	p2.Name = "Marta"
+	p2.Friends = []string{"Carlos", "Sergio"}
+	color = "Rojo"
+	phones["home"] = "3333333"
+	//mostramos informacion
+	fmt.Println(p1.ToString())
+	fmt.Println(p2.ToString())
+}
+
+func testProxy() {
+	client.StartClient()
+}
+
+func testAdapter() {
+	var t string
+	fmt.Print("digite el tipo de transporte: ")
+	fmt.Scan(&t)
+	transportAdapter := adapter.Factory(t)
+	transportAdapter.Mover()
 }
