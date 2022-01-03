@@ -9,7 +9,6 @@ import (
 	"github.com/cesardelgadom/go-patterns/builder"
 	"github.com/cesardelgadom/go-patterns/factory"
 	"github.com/cesardelgadom/go-patterns/prototype"
-	"github.com/cesardelgadom/go-patterns/proxy/client"
 	"github.com/cesardelgadom/go-patterns/singleton"
 	"github.com/cesardelgadom/go-patterns/singleton/client_one"
 	"github.com/cesardelgadom/go-patterns/singleton/client_two"
@@ -20,7 +19,6 @@ func main() {
 	//testFactory()
 	//testBuilder()
 	//testPrototype()
-	//testProxy()
 	testAdapter()
 }
 
@@ -115,10 +113,6 @@ func testPrototype() {
 	//mostramos informacion
 	fmt.Println(p1.ToString())
 	fmt.Println(p2.ToString())
-}
-
-func testProxy() {
-	client.StartClient()
 }
 
 func testAdapter() {

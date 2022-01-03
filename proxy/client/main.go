@@ -1,4 +1,4 @@
-package client
+package main
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 
 var loc local.Proxy
 
-func StartClient() {
+func main() {
 	//remot = remote.New("http://algunaDB.com", 8080, "pointer", "******")
 	loc = local.New()
 
