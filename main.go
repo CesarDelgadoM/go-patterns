@@ -7,7 +7,6 @@ import (
 
 	"github.com/cesardelgadom/go-patterns/adapter"
 	"github.com/cesardelgadom/go-patterns/builder"
-	"github.com/cesardelgadom/go-patterns/factory"
 	"github.com/cesardelgadom/go-patterns/prototype"
 	"github.com/cesardelgadom/go-patterns/singleton"
 	"github.com/cesardelgadom/go-patterns/singleton/client_one"
@@ -16,7 +15,6 @@ import (
 
 func main() {
 	//testSingleton()
-	//testFactory()
 	//testBuilder()
 	//testPrototype()
 	testAdapter()
@@ -38,24 +36,6 @@ func testSingleton() {
 	wg.Wait()
 	p := singleton.GetInstance()
 	fmt.Println(p.GetAge())
-}
-
-func testFactory() {
-	var typeDb int8
-	fmt.Print("Digite la conexion deseada: ")
-	_, err := fmt.Scan(&typeDb)
-	if err != nil {
-		fmt.Printf("Error al leer la opcion: %v", err)
-		os.Exit(1)
-	}
-	conn := factory.Factory(int(typeDb))
-	if conn == nil {
-		fmt.Println("Motor DB no valido!")
-		os.Exit(1)
-	}
-	conn.Connect()
-	fmt.Println(conn.GetNow())
-	conn.Close()
 }
 
 func testBuilder() {
